@@ -2,6 +2,17 @@
 <html>
 <head>
     <link rel="stylesheet" type="text/css" href="index.css" media="screen" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script> 
+        function handleSubmit() {
+            const orderNumber = document.getElementById("orderNumberInput").value
+            const customerName = document.getElementById("customerNameInput").value
+            const dish = document.getElementById("productSelect").value
+            console.log(orderNumber)
+            console.log(customerName)
+            console.log(dish)
+        }
+    </script>
 </head>
 <body>
     <div class="mainWrapper">
@@ -32,6 +43,19 @@
                 <p class="timeBox">...</p>
             </div>
         </div>
+    </div>
+    <div class="orderForm" id="orderForm">
+        <label>Order number</label>
+        <input type="text" name="orderNumber" id="orderNumberInput">
+        <label>Customer name</label>
+        <input type="text" name="customerName" id="customerNameInput">
+        <select name="Dish" id="productSelect">
+            <option value="pizza">Pizza</option>
+            <option value="hamburgare">Hamburgare</option>
+            <option value="vingar">Vingar</option>
+            <option value="salad">salad</option>
+        </select>
+        <button onclick="handleSubmit()">Save</button>
     </div>
 </body>
 </html>
