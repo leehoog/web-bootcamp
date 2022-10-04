@@ -4,18 +4,71 @@
     <link rel="stylesheet" type="text/css" href="index.css" media="screen" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script> 
-        function handleSubmit() {
-            const orderNumber = document.getElementById("orderNumberInput").value
-            const customerName = document.getElementById("customerNameInput").value
-            const dish = document.getElementById("productSelect").value
-            console.log(orderNumber)
-            console.log(customerName)
-            console.log(dish)
+        const orders = []  
+          function renderOrder(order){
+            const div = document.createElement("div");
+                div.innerHTML = `
+                <div class="orderCardWrapper">
+                    <div class="orderCardHeader">
+                        <p>#${order.orderNumber}</p>
+                        <p>${order.customerName}</p>
+                            <div class="timeBox">
+                            <p>Created 15:30</p>
+                    </div>
+                </div>
+                            <div class="hotFood">
+                                <div class="product">
+                                    <p class="main">${order.dish}</p>
+                                    <p class="modifier">1 No olives</p>
+                            </div>
+            </div>
+            <span class="divider"></span>
+            <div class="expediteItems">
+                <p class="main">${order.dish}</p>
+            </div>
+            <span class="divider" style="margin-top: auto"></span>
+            <div class="footer">
+                <p>Foodora</p>
+                <p>#1426</p>
+                <p class="timeBox">...</p>
+            </div>
+        </div>`
+        
+        const mainWrapper = document.getElementById("mainWrapper");
+        mainWrapper.appendChild(div)
         }
+        const savedOrders = localStorage.getItem("orders")
+        if (savedOrders) {
+            const parsedOrders = JSON.parse(savedOrders)
+            for( let i = 0; i < parsedOrders.length; i++) {
+                const order =  parsedOrders[i]
+                renderOrder(order)
+            }
+        }
+
+    
+            function handleSubmit() {
+                const orderNumber = document.getElementById("orderNumberInput").value
+                const customerName = document.getElementById("customerNameInput").value
+                const dish = document.getElementById("productSelect").value
+                const newOrder = { 
+                    orderNumber, 
+                    customerName, 
+                    dish
+                }
+                orders.push(newOrder)
+                console.log(newOrder)
+                console.log(orders)
+
+                renderOrder(newOrder)
+              
+        localStorage.setItem("orders", JSON.stringify(orders))
+            }
+        
     </script>
 </head>
 <body>
-    <div class="mainWrapper">
+    <div id="mainWrapper">
         <div class="orderCardWrapper">
             <div class="orderCardHeader">
                 <p>#12</p>

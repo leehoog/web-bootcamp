@@ -2,7 +2,10 @@ p {
     margin: 0;
 }
 
-.mainWrapper {
+#mainWrapper {
+    display: flex;
+    gap: 5px;
+    flex-wrap: wrap;
     width: 100%;
     minHeight: '100vh';
     padding: 20px;
