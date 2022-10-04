@@ -62,12 +62,8 @@
                 customerName,
                 dish
             }
-            orders.push(newOrder)
-            console.log(newOrder)
-            console.log(orders)
-
+            
             renderOrder(newOrder)
-
             localStorage.setItem("orders", JSON.stringify(orders))
         }
 
