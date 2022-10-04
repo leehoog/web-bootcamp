@@ -40,16 +40,18 @@
             mainWrapper.appendChild(div)
         }
 
-        const savedOrders = localStorage.getItem("orders")
 
-        if (savedOrders) {
-            const parsedOrders = JSON.parse(savedOrders)
-            for (let i = 0; i < parsedOrders.length; i++) {
-                const order = parsedOrders[i]
-                renderOrder(order)
+        // document.addEventListener determines if HTML has loaded
+        document.addEventListener('DOMContentLoaded', (e) => {
+            const savedOrders = localStorage.getItem("orders")
+            if (savedOrders) {
+                const parsedOrders = JSON.parse(savedOrders)
+                for (let i = 0; i < parsedOrders.length; i++) {
+                    const order = parsedOrders[i]
+                    renderOrder(order)
+                }
             }
-        }
-
+        });
 
         function handleSubmit() {
             const orderNumber = document.getElementById("orderNumberInput").value
@@ -73,33 +75,6 @@
 </head>
 <body>
 <div id="mainWrapper">
-    <div class="orderCardWrapper">
-        <div class="orderCardHeader">
-            <p>#12</p>
-            <p>Leo G.</p>
-            <div class="timeBox">
-                <p>Created 15:30</p>
-            </div>
-        </div>
-        <div class="hotFood">
-            <div class="product">
-                <p class="main">1 Pizza</p>
-                <p class="modifier">1 No olives</p>
-            </div>
-        </div>
-        <span class="divider"></span>
-        <div class="expediteItems">
-            <p class="main">1 sallad</p>
-            <p class="main">1 sallad</p>
-            <p class="main">1 sallad</p>
-        </div>
-        <span class="divider" style="margin-top: auto"></span>
-        <div class="footer">
-            <p>Foodora</p>
-            <p>#1426</p>
-            <p class="timeBox">...</p>
-        </div>
-    </div>
 </div>
 <div class="orderForm" id="orderForm">
     <label>Order number</label>
