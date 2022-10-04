@@ -1,114 +1,118 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <link rel="stylesheet" type="text/css" href="index.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="index.css" media="screen"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script> 
-        const orders = []  
-          function renderOrder(order){
+    <script>
+        const orders = []
+
+        function renderOrder(order) {
             const div = document.createElement("div");
-                div.innerHTML = `
+            div.innerHTML = `
                 <div class="orderCardWrapper">
                     <div class="orderCardHeader">
                         <p>#${order.orderNumber}</p>
                         <p>${order.customerName}</p>
-                            <div class="timeBox">
+                        <div class="timeBox">
                             <p>Created 15:30</p>
+                        </div>
+                    </div>
+                    <div class="hotFood">
+                         <div class="product">
+                            <p class="main">${order.dish}</p>
+                            <p class="modifier">1 No olives</p>
+                         </div>
+                    </div>
+                    <span class="divider"></span>
+                    <div class="expediteItems">
+                        <p class="main">${order.dish}</p>
+                    </div>
+                    <span class="divider" style="margin-top: auto"></span>
+                    <div class="footer">
+                        <p>Foodora</p>
+                        <p>#1426</p>
+                        <p class="timeBox">...</p>
                     </div>
                 </div>
-                            <div class="hotFood">
-                                <div class="product">
-                                    <p class="main">${order.dish}</p>
-                                    <p class="modifier">1 No olives</p>
-                            </div>
-            </div>
-            <span class="divider"></span>
-            <div class="expediteItems">
-                <p class="main">${order.dish}</p>
-            </div>
-            <span class="divider" style="margin-top: auto"></span>
-            <div class="footer">
-                <p>Foodora</p>
-                <p>#1426</p>
-                <p class="timeBox">...</p>
-            </div>
-        </div>`
-        
-        const mainWrapper = document.getElementById("mainWrapper");
-        mainWrapper.appendChild(div)
+            `
+
+            const mainWrapper = document.getElementById("mainWrapper");
+            mainWrapper.appendChild(div)
         }
+
         const savedOrders = localStorage.getItem("orders")
+
         if (savedOrders) {
             const parsedOrders = JSON.parse(savedOrders)
-            for( let i = 0; i < parsedOrders.length; i++) {
-                const order =  parsedOrders[i]
+            for (let i = 0; i < parsedOrders.length; i++) {
+                const order = parsedOrders[i]
                 renderOrder(order)
             }
         }
 
-    
-            function handleSubmit() {
-                const orderNumber = document.getElementById("orderNumberInput").value
-                const customerName = document.getElementById("customerNameInput").value
-                const dish = document.getElementById("productSelect").value
-                const newOrder = { 
-                    orderNumber, 
-                    customerName, 
-                    dish
-                }
-                orders.push(newOrder)
-                console.log(newOrder)
-                console.log(orders)
 
-                renderOrder(newOrder)
-              
-        localStorage.setItem("orders", JSON.stringify(orders))
+        function handleSubmit() {
+            const orderNumber = document.getElementById("orderNumberInput").value
+            const customerName = document.getElementById("customerNameInput").value
+            const dish = document.getElementById("productSelect").value
+            const newOrder = {
+                orderNumber,
+                customerName,
+                dish
             }
-        
+            orders.push(newOrder)
+            console.log(newOrder)
+            console.log(orders)
+
+            renderOrder(newOrder)
+
+            localStorage.setItem("orders", JSON.stringify(orders))
+        }
+
     </script>
 </head>
 <body>
-    <div id="mainWrapper">
-        <div class="orderCardWrapper">
-            <div class="orderCardHeader">
-                <p>#12</p>
-                <p>Leo G.</p>
-                <div class="timeBox">
-                    <p>Created 15:30</p>
-                </div>
-            </div>
-            <div class="hotFood">
-                <div class="product">
-                    <p class="main">1 Pizza</p>
-                    <p class="modifier">1 No olives</p>
-                </div>
-            </div>
-            <span class="divider"></span>
-            <div class="expediteItems">
-                <p class="main">1 sallad</p>
-                <p class="main">1 sallad</p>
-                <p class="main">1 sallad</p>
-            </div>
-            <span class="divider" style="margin-top: auto"></span>
-            <div class="footer">
-                <p>Foodora</p>
-                <p>#1426</p>
-                <p class="timeBox">...</p>
+<div id="mainWrapper">
+    <div class="orderCardWrapper">
+        <div class="orderCardHeader">
+            <p>#12</p>
+            <p>Leo G.</p>
+            <div class="timeBox">
+                <p>Created 15:30</p>
             </div>
         </div>
+        <div class="hotFood">
+            <div class="product">
+                <p class="main">1 Pizza</p>
+                <p class="modifier">1 No olives</p>
+            </div>
+        </div>
+        <span class="divider"></span>
+        <div class="expediteItems">
+            <p class="main">1 sallad</p>
+            <p class="main">1 sallad</p>
+            <p class="main">1 sallad</p>
+        </div>
+        <span class="divider" style="margin-top: auto"></span>
+        <div class="footer">
+            <p>Foodora</p>
+            <p>#1426</p>
+            <p class="timeBox">...</p>
+        </div>
     </div>
-    <div class="orderForm" id="orderForm">
-        <label>Order number</label>
-        <input type="text" name="orderNumber" id="orderNumberInput">
-        <label>Customer name</label>
-        <input type="text" name="customerName" id="customerNameInput">
-        <select name="Dish" id="productSelect">
-            <option value="pizza">Pizza</option>
-            <option value="hamburgare">Hamburgare</option>
-            <option value="vingar">Vingar</option>
-            <option value="salad">salad</option>
-        </select>
-        <button onclick="handleSubmit()">Save</button>
-    </div>
+</div>
+<div class="orderForm" id="orderForm">
+    <label>Order number</label>
+    <input type="text" name="orderNumber" id="orderNumberInput">
+    <label>Customer name</label>
+    <input type="text" name="customerName" id="customerNameInput">
+    <select name="Dish" id="productSelect">
+        <option value="pizza">Pizza</option>
+        <option value="hamburgare">Hamburgare</option>
+        <option value="vingar">Vingar</option>
+        <option value="salad">salad</option>
+    </select>
+    <button onclick="handleSubmit()">Save</button>
+</div>
 </body>
 </html>
