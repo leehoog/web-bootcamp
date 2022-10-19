@@ -1,0 +1,49 @@
+// renderTask('hej', 0)
+function renderTask(taskName, id) {
+    const div = document.createElement("div");
+    div.innerHTML = `
+        <div class="taskItem">
+            <p>${taskName}</p>
+            <button>Delete</button>
+        </div>
+    `
+}
+
+/*
+ const newTask = {
+    taskName: 'hej',
+    id: 0
+ } 
+
+ renderTask1(newTask)
+*/
+
+function renderTask1(newTask) {
+    const div = document.createElement("div");
+    div.innerHTML = `
+        <div class="taskItem">
+            <p>${newTask.taskName}</p>
+            <button>Delete</button>
+        </div>
+    `
+}
+
+/*
+ const newTask = {
+    taskName: 'hej',
+    id: 0,
+    userId: '12323'
+ } 
+
+ renderTask2(newTask)
+*/
+
+function renderTask2({ taskName }) {
+    const div = document.createElement("div");
+    div.innerHTML = `
+        <div class="taskItem">
+            <p>${taskName}</p>
+            <button>Delete</button>
+        </div>
+    `
+}
